@@ -2,20 +2,33 @@
 <html lang="en">
 <head>
   <title>RealEstate — Listings</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <h1 class="logo">RealEstate</h1>
       <nav>
-        <a href="#">Home</a>
-        <a href="#">Agents</a>
+        <a href="#">Home</a>         
+        <a href="#">Agents</a> 
         <a href="#">Contact</a>
         <a class="btn-login" href="#">Login</a>
       </nav>
     </div>
   </header>
+
+  <section id="search" aria-label="search">   
+  <form id="searchForm" class="search-form">
+    <input type="text" id="q" name="q" placeholder="Search by city, keyword..." />
+    <select id="bedrooms" name="bedrooms">
+      <option value="">Any beds</option>
+      <option value="1">1+</option>
+      <option value="2">2+</option>
+      <option value="3">3+</option>
+    </select>
+    <button type="submit" class="btn">Search</button>
+  </form>
+</section>
 
   <main class="container">
     <section id="hero">
@@ -26,7 +39,56 @@
     <section id="properties">
       <h3>Latest listings</h3>
       <div id="listings" class="cards-grid">
-        
+
+<div class="card">
+  <div class="title">2-bed apartment in Dublin</div>            
+  <div class="meta">Dublin • €250,000 • 2 bed • 1 bath</div>
+  <p>Bright apartment near the quay. 750 sqft.</p>
+  <a class="btn" href="#">View details</a>
+</div>
+
+<div class="card">
+  <div class="title">Detached house in Wicklow</div>
+  <div class="meta">Wicklow • €420,000 • 4 bed • 2 bath</div>
+  <p>Quiet neighbourhood, large garden and garage.</p>
+  <a class="btn" href="#">View details</a>
+</div>
+
+<div class="card">
+  <div class="title">Detached house in Wicklow</div>
+  <div class="meta">Wicklow • €420,000 • 4 bed • 2 bath</div>
+  <p>Quiet neighbourhood, large garden and garage.</p>
+  <a class="btn" href="#">View details</a>
+</div>
+
+<div class="card">
+  <div class="title">Detached house in Wicklow</div>
+  <div class="meta">Wicklow • €420,000 • 4 bed • 2 bath</div>
+  <p>Quiet neighbourhood, large garden and garage.</p>
+  <a class="btn" href="#">View details</a>
+</div>
+
+<div class="card">
+  <div class="title">Detached house in Wicklow</div>
+  <div class="meta">Wicklow • €420,000 • 4 bed • 2 bath</div>
+  <p>Quiet neighbourhood, large garden and garage.</p>
+  <a class="btn" href="#">View details</a>
+</div>
+
+<div class="card">
+  <div class="title">Detached house in Wicklow</div>
+  <div class="meta">Wicklow • €420,000 • 4 bed • 2 bath</div>
+  <p>Quiet neighbourhood, large garden and garage.</p>
+  <a class="btn" href="#">View details</a>
+</div>
+
+<div class="card">
+  <div class="title">Detached house in Wicklow</div>
+  <div class="meta">Wicklow • €420,000 • 4 bed • 2 bath</div>
+  <p>Quiet neighbourhood, large garden and garage.</p>
+  <a class="btn" href="#">View details</a>
+</div>
+
       </div>
     </section>
   </main>

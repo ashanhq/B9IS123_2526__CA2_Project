@@ -1,0 +1,33 @@
+:root{
+  --max-width: 1000px;
+  --accent: #0b6efd; /*get the style form chatgpt and modify*/
+  --muted:#666;
+  --card-bg:#fff;
+  --bg:#f7f8fb;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:#212121}
+.container{max-width:var(--max-width);margin:0 auto;padding:16px}
+.site-header{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.site-header .container{display:flex;align-items:center;justify-content:space-between}
+.site-header nav a{margin-left:12px;text-decoration:none;color:var(--muted)}
+.logo{margin:0;font-size:1.25rem;color:var(--accent)}
+#search {
+  position: relative;
+}
+
+#searchForm {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+#hero{padding:28px 0}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:12px}
+.card{background:var(--card-bg);padding:12px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.card .title{font-weight:600;margin-bottom:6px}
+.card .meta{font-size:0.9rem;color:var(--muted);margin-bottom:8px}
+.btn{display:inline-block;padding:8px 10px;border-radius:6px;text-decoration:none;background:var(--accent);color:#fff}
+.site-footer{padding:12px 0;text-align:center;color:var(--muted);margin-top:24px}
