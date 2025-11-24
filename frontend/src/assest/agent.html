@@ -35,7 +35,47 @@
       <h2>Find your next home</h2>
       <p>Search properties, contact agents, manage listings.</p>
     </section>
-    <a href="add_listing.html" class="btn add-listing-btn">➕ Add Listing</a>
+    <div class="btn add-listing-btn">➕ Add Listing</div>
+    
+    <div id="addListingModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Add New Property</h2>
+      <span class="close-btn" id="closeModalBtn">&times;</span>
+    </div>
+
+    <form class="modal-form">
+      <label>Price ($)</label>
+      <input type="text" />
+
+      <label>Type</label>
+      <select>
+        <option>For Sale</option>
+        <option>For Rent</option>
+      </select>
+
+      <label>Location</label>
+      <input type="text" />
+
+      <div class="row">
+        <div>
+          <label>Beds</label>
+          <input type="number" value="1" />
+        </div>
+        <div>
+          <label>Baths</label>
+          <input type="number" value="1" />
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="cancel-btn" id="cancelModalBtn">Cancel</button>
+        <button type="submit" class="save-btn">Save</button>
+      </div>
+
+    </form>
+  </div>
+</div>
     <section id="properties">
       <h3>Latest listings</h3>
       <div id="listings" class="cards-grid">
