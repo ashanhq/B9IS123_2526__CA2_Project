@@ -9,8 +9,8 @@
     <div class="container">
       <h1 class="logo">RealEstate</h1>
       <nav>
-        <a href="#">Home</a>         
-        <a href="#">Agents</a> 
+        <a href="index.html">Home</a>         
+        <a href="agent.html">Agents</a> 
         <a href="#">Contact</a>
         <a class="btn-login" href="#">Login</a>
       </nav>
@@ -163,7 +163,43 @@
     <button class="btn delete-btn">Delete</button>
   </div>
 </div>
+<!-- Edit Listing Modal -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
 
+    <div class="modal-header">
+      <h2>Edit Property</h2>
+      <span id="editCloseBtn" class="close-btn">&times;</span>
+    </div>
+
+    <form id="editForm" class="modal-form">
+      
+      <label>Title</label>
+      <input type="text" id="editTitle">
+
+      <label>Location</label>
+      <input type="text" id="editLocation">
+
+      <label>Price</label>
+      <input type="text" id="editPrice">
+
+      <label>Beds</label>
+      <input type="number" id="editBeds">
+
+      <label>Baths</label>
+      <input type="number" id="editBaths">
+
+      <label>Description</label>
+      <textarea id="editDesc"></textarea>
+
+      <div class="modal-actions">
+        <button type="button" class="cancel-btn">Cancel</button>
+        <button type="submit" class="save-btn">Update</button>
+      </div>
+
+    </form>
+  </div>
+</div>
       </div>
     </section>
   </main>
