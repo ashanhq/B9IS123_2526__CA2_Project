@@ -28,3 +28,21 @@ window.addEventListener("click", function (event) {
     addListingModal.style.display = "none";
   }
 });
+
+
+//Edit Listing Foam
+
+// Elements
+  const editModal = document.getElementById("editModal");
+  const editCloseBtn = document.getElementById("editCloseBtn");
+  const cancelEditBtn = document.getElementById("cancelEditBtn");
+
+  // Form Fields
+  const editTitle = document.getElementById("editTitle");
+  const editLocation = document.getElementById("editLocation");
+  const editPrice = document.getElementById("editPrice");
+  const editBeds = document.getElementById("editBeds");
+  const editBaths = document.getElementById("editBaths");
+  const editDesc = document.getElementById("editDesc");
+
+  let activeCard = null;
