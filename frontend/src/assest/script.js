@@ -46,3 +46,41 @@ window.addEventListener("click", function (event) {
   const editDesc = document.getElementById("editDesc");
 
   let activeCard = null;
+
+  // OPEN EDIT FORM
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("edit-btn")) {
+      activeCard = e.target.closest(".card");
+
+      let title = activeCard.querySelector(".title").innerText;
+      let meta = activeCard.querySelector(".meta").innerText;
+      let desc = activeCard.querySelector("p").innerText;
+
+      let [location, price, beds, baths] = meta.split("•").map(v => v.trim());
+
+      editTitle.value = title;
+      editLocation.value = location;
+      editPrice.value = price.replace("€", "");
+      editBeds.value = beds.split(" ")[0];
+      editBaths.value = baths.split(" ")[0];
+      editDesc.value = desc;
+
+      editModal.style.display = "block";
+    }
+  });
+
+  // CLOSE MODAL
+  editCloseBtn.onclick = () => editModal.style.display = "none";
+  cancelEditBtn.onclick = () => editModal.style.display = "none";
+
+   // SAVE EDITS
+  document.getElementById("editForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    activeCard.querySelector(".title").innerText = editTitle.value;
+    activeCard.querySelector(".meta").innerText =
+      `${editLocation.value} • €${editPrice.value} • ${editBeds.value} bed • ${editBaths.value} bath`;
+    activeCard.querySelector("p").innerText = editDesc.value;
+
+    editModal.style.display = "none";
+  });
