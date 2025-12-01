@@ -11,3 +11,17 @@ document.querySelector("#addForm").addEventListener("submit", async (e) => {
     baths: Number(document.querySelector("#baths").value),
     //image: document.querySelector("#image").value 
   };
+
+   const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  if (res.ok) {
+    alert("Property added successfully!");
+    window.location.reload();
+  } else {
+    alert("Failed to add property");
+  }
+});
