@@ -57,6 +57,7 @@ document.addEventListener("click", function (e) {
   if (e.target.classList.contains("edit-btn")) {
 
     activeCard = e.target.closest(".card");
+    currentEditId = e.target.dataset.id;
    
 
     const title = activeCard.querySelector(".title").innerText;
