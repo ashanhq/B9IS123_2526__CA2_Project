@@ -1,4 +1,4 @@
-  // Open Modal
+// Open Modal
 const addListingBtn = document.querySelector(".add-listing-btn");
 const addListingModal = document.getElementById("addListingModal");
 
@@ -84,3 +84,7 @@ window.addEventListener("click", function (event) {
 
     editModal.style.display = "none";
   });
+
+
+const API_URL = "http://localhost:5000/api/properties";
+
