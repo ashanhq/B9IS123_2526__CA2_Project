@@ -88,3 +88,17 @@ window.addEventListener("click", function (event) {
 
 const API_URL = "http://localhost:5000/api/properties";
 
+function createPropertyCard(p) {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.dataset.id = p._id;
+
+  const titleText = `${p.type || "Property"} in ${p.location || ""}`;
+  const metaText = `${p.location || ""} • €${p.price ?? ""} • ${p.beds ?? 0} bed • ${p.baths ?? 0} bath`;
+  const descText = p.description || "No description provided.";
+
+  card.innerHTML = `
+    <div class="title">${titleText}</div>
+    <div class="meta">${metaText}</div>
+    <p>${descText}</p>
+}
