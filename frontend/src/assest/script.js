@@ -139,3 +139,20 @@ async function loadProperties() {
     container.innerHTML = "<p>Could not load properties.</p>";
   }
 }
+
+async function deleteProperty(id) {
+  const ok = confirm("Are you sure you want to delete this property?");
+  if (!ok) return;
+
+  await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+  loadProperties();
+}
+document.addEventListener("click", (e) => {
+  // Delete
+  if (e.target.classList.contains("delete-btn")) {
+    e.preventDefault();
+    const id = e.target.dataset.id;
+    deleteProperty(id);
+  }
+  
+});
