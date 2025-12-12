@@ -101,4 +101,13 @@ function createPropertyCard(p) {
     <div class="title">${titleText}</div>
     <div class="meta">${metaText}</div>
     <p>${descText}</p>
+
+    <div class="card-actions">
+      <a class="btn" href="#">View details</a>
+      <a class="btn edit-btn" href="#" data-id="${p._id}">Edit</a>
+      <button class="btn delete-btn" data-id="${p._id}">Delete</button>
+    </div>
+  `;
+
+  return card;
 }
