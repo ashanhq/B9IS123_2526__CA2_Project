@@ -154,5 +154,7 @@ document.addEventListener("click", (e) => {
     const id = e.target.dataset.id;
     deleteProperty(id);
   }
-  
+
 });
+
+document.addEventListener("DOMContentLoaded", loadProperties);
