@@ -111,3 +111,31 @@ function createPropertyCard(p) {
 
   return card;
 }
+
+async function loadProperties() {
+  const container = document.getElementById("listings");
+  if (!container) return; // page doesn't have listings
+
+  container.innerHTML = "<p>Loading listings...</p>";
+
+  try {
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error("Failed to fetch properties");
+
+    const properties = await res.json();
+
+    if (!properties.length) {
+      container.innerHTML = "<p>No properties found. Add a new listing!</p>";
+      return;
+    }
+
+    container.innerHTML = "";
+    properties.forEach((p) => {
+      const card = createPropertyCard(p);
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = "<p>Could not load properties.</p>";
+  }
+}
