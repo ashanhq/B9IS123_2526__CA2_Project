@@ -1,92 +1,138 @@
+const API_URL = "http://localhost:5000/api/properties";
+
 // Open Modal
 const addListingBtn = document.querySelector(".add-listing-btn");
 const addListingModal = document.getElementById("addListingModal");
-
 // Close Buttons
 const closeModalBtn = document.getElementById("closeModalBtn");
 const cancelModalBtn = document.getElementById("cancelModalBtn");
 
-// Open modal when clicking the button
-addListingBtn.addEventListener("click", function (e) {
-  e.preventDefault(); // stops opening add-property.html
-  addListingModal.style.display = "block";
-});
+if (addListingBtn && addListingModal) {
+  addListingBtn.addEventListener("click", function (e) {
+    e.preventDefault(); // stops opening add-property.html
+    addListingModal.style.display = "block";
+  });
 
-// Close modal on (X) button
-closeModalBtn.addEventListener("click", function () {
-  addListingModal.style.display = "none";
-});
+  // Close modal on (X) button
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", function () {
+      addListingModal.style.display = "none";
+    });
+  }
 
-// Close modal on Cancel button
-cancelModalBtn.addEventListener("click", function () {
-  addListingModal.style.display = "none";
-});
+  // Close modal on Cancel button
+  if (cancelModalBtn) {
+    cancelModalBtn.addEventListener("click", function () {
+      addListingModal.style.display = "none";
+    });
+  }
 
-// Optional: close modal when clicking outside content
-window.addEventListener("click", function (event) {
-  if (event.target === addListingModal) {
-    addListingModal.style.display = "none";
+  // Optional: close modal when clicking outside content
+  window.addEventListener("click", function (event) {
+    if (event.target === addListingModal) {
+      addListingModal.style.display = "none";
+    }
+  });
+}
+
+//Edit Listing Foam
+// Elements
+const editModal = document.getElementById("editModal");
+const editCloseBtn = document.getElementById("editCloseBtn");
+const cancelEditBtn = document.getElementById("cancelEditBtn");
+
+// Form Fields
+const editTitle = document.getElementById("editTitle");
+const editLocation = document.getElementById("editLocation");
+const editPrice = document.getElementById("editPrice");
+const editBeds = document.getElementById("editBeds");
+const editBaths = document.getElementById("editBaths");
+const editDesc = document.getElementById("editDesc");
+
+let activeCard = null;
+let currentEditId = null; // <-- MongoDB _id of property being edited ******************
+
+// OPEN EDIT FORM
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("edit-btn")) {
+
+    activeCard = e.target.closest(".card");
+   
+
+    const title = activeCard.querySelector(".title").innerText;
+    const meta = activeCard.querySelector(".meta").innerText;
+    const desc = activeCard.querySelector("p").innerText;
+
+
+    const [location, price, beds, baths] = meta.split("•").map(v => v.trim());
+
+    editTitle.value = title;
+    editLocation.value = location;
+    editPrice.value = price.replace("€", "");
+    editBeds.value = beds.split(" ")[0];
+    editBaths.value = baths.split(" ")[0];
+    editDesc.value = desc;
+
+    editModal.style.display = "block";
   }
 });
 
+// CLOSE EDIT MODAL
+if (editCloseBtn) {
+  editCloseBtn.onclick = () => {
+    editModal.style.display = "none";
+    currentEditId = null;
+  };
+}
 
-//Edit Listing Foam
+if (cancelEditBtn) {
+  cancelEditBtn.onclick = () => {
+    editModal.style.display = "none";
+    currentEditId = null;
+  };
+}
 
-// Elements
-  const editModal = document.getElementById("editModal");
-  const editCloseBtn = document.getElementById("editCloseBtn");
-  const cancelEditBtn = document.getElementById("cancelEditBtn");
-
-  // Form Fields
-  const editTitle = document.getElementById("editTitle");
-  const editLocation = document.getElementById("editLocation");
-  const editPrice = document.getElementById("editPrice");
-  const editBeds = document.getElementById("editBeds");
-  const editBaths = document.getElementById("editBaths");
-  const editDesc = document.getElementById("editDesc");
-
-  let activeCard = null;
-
-  // OPEN EDIT FORM
-  document.addEventListener("click", function (e) {
-    if (e.target.classList.contains("edit-btn")) {
-      activeCard = e.target.closest(".card");
-
-      let title = activeCard.querySelector(".title").innerText;
-      let meta = activeCard.querySelector(".meta").innerText;
-      let desc = activeCard.querySelector("p").innerText;
-
-      let [location, price, beds, baths] = meta.split("•").map(v => v.trim());
-
-      editTitle.value = title;
-      editLocation.value = location;
-      editPrice.value = price.replace("€", "");
-      editBeds.value = beds.split(" ")[0];
-      editBaths.value = baths.split(" ")[0];
-      editDesc.value = desc;
-
-      editModal.style.display = "block";
-    }
-  });
-
-  // CLOSE MODAL
-  editCloseBtn.onclick = () => editModal.style.display = "none";
-  cancelEditBtn.onclick = () => editModal.style.display = "none";
-
-   // SAVE EDITS
-  document.getElementById("editForm").addEventListener("submit", function (e) {
+// SAVE EDITS – UPDATE DB (NOT JUST PAGE)
+const editForm = document.getElementById("editForm");
+if (editForm) {
+  editForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    activeCard.querySelector(".title").innerText = editTitle.value;
-    activeCard.querySelector(".meta").innerText =
-      `${editLocation.value} • €${editPrice.value} • ${editBeds.value} bed • ${editBaths.value} bath`;
-    activeCard.querySelector("p").innerText = editDesc.value;
+    if (!currentEditId) {
+      alert("No property selected to update.");
+      return;
+    }
 
-    editModal.style.display = "none";
+    const updated = {
+      location: editLocation.value,
+      price: Number(editPrice.value),
+      beds: Number(editBeds.value),
+      baths: Number(editBaths.value),
+      description: editDesc.value
+    };
+
+    try {
+      const res = await fetch(`${API_URL}/${currentEditId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updated)
+      });
+
+      if (!res.ok) throw new Error("Update failed");
+
+      alert("Property updated in database!");
+
+      editModal.style.display = "none";
+      currentEditId = null;
+
+      // Reload cards from DB
+      loadProperties();
+    } catch (err) {
+      console.error("Update error:", err);
+      alert("Could not update property.");
+    }
   });
-
-
-const API_URL = "http://localhost:5000/api/properties";
+}
 
 function createPropertyCard(p) {
   const card = document.createElement("div");
@@ -112,9 +158,10 @@ function createPropertyCard(p) {
   return card;
 }
 
+//Load property
 async function loadProperties() {
   const container = document.getElementById("listings");
-  if (!container) return; // page doesn't have listings
+  if (!container) return;
 
   container.innerHTML = "<p>Loading listings...</p>";
 
@@ -140,6 +187,7 @@ async function loadProperties() {
   }
 }
 
+//delete property
 async function deleteProperty(id) {
   const ok = confirm("Are you sure you want to delete this property?");
   if (!ok) return;
@@ -147,14 +195,17 @@ async function deleteProperty(id) {
   await fetch(`${API_URL}/${id}`, { method: "DELETE" });
   loadProperties();
 }
+
 document.addEventListener("click", (e) => {
-  // Delete
   if (e.target.classList.contains("delete-btn")) {
     e.preventDefault();
     const id = e.target.dataset.id;
     deleteProperty(id);
   }
-
 });
 
+// initialload
 document.addEventListener("DOMContentLoaded", loadProperties);
+
+
+
