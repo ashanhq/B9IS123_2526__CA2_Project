@@ -6,7 +6,7 @@ const PropertySchema = new mongoose.Schema({
   location: String,
   beds: Number,
   baths: Number,
-  image: String
+  image: String,
   description: String
 });
 
