@@ -1,4 +1,5 @@
 const API_URL = "http://localhost:5000/api/properties";
+let currentEditId = null;
 
 // Open Modal
 const addListingBtn = document.querySelector(".add-listing-btn");
@@ -12,7 +13,6 @@ if (addListingBtn && addListingModal) {
     e.preventDefault(); // stops opening add-property.html
     addListingModal.style.display = "block";
   });
-
   // Close modal on (X) button
   if (closeModalBtn) {
     closeModalBtn.addEventListener("click", function () {
@@ -20,14 +20,13 @@ if (addListingBtn && addListingModal) {
     });
   }
 
-  // Close modal on Cancel button
+// Close modal on Cancel button
   if (cancelModalBtn) {
     cancelModalBtn.addEventListener("click", function () {
       addListingModal.style.display = "none";
     });
   }
 
-  // Optional: close modal when clicking outside content
   window.addEventListener("click", function (event) {
     if (event.target === addListingModal) {
       addListingModal.style.display = "none";
@@ -49,21 +48,21 @@ const editBeds = document.getElementById("editBeds");
 const editBaths = document.getElementById("editBaths");
 const editDesc = document.getElementById("editDesc");
 
-let activeCard = null;
-let currentEditId = null; // <-- MongoDB _id of property being edited ******************
-
 // OPEN EDIT FORM
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("edit-btn")) {
+    e.preventDefault();
 
-    activeCard = e.target.closest(".card");
-    currentEditId = e.target.dataset.id;
-   
+    const card = e.target.closest(".card");
+    if (!card) return;
 
-    const title = activeCard.querySelector(".title").innerText;
-    const meta = activeCard.querySelector(".meta").innerText;
-    const desc = activeCard.querySelector("p").innerText;
+    currentEditId = e.target.dataset.id; //
 
+    const title = card.querySelector(".title").innerText;
+    const meta = card.querySelector(".meta").innerText;
+    const desc = card.querySelector(".description")
+      ? card.querySelector(".description").innerText
+      : card.querySelector("p").innerText;
 
     const [location, price, beds, baths] = meta.split("•").map(v => v.trim());
 
@@ -74,7 +73,7 @@ document.addEventListener("click", function (e) {
     editBaths.value = baths.split(" ")[0];
     editDesc.value = desc;
 
-    editModal.style.display = "block";
+    if (editModal) editModal.style.display = "block";
   }
 });
 
@@ -93,7 +92,7 @@ if (cancelEditBtn) {
   };
 }
 
-// SAVE EDITS – UPDATE DB (NOT JUST PAGE)
+// SAVE EDITS – SEND PUT TO DB
 const editForm = document.getElementById("editForm");
 if (editForm) {
   editForm.addEventListener("submit", async function (e) {
@@ -135,6 +134,7 @@ if (editForm) {
   });
 }
 
+// Build Card
 function createPropertyCard(p) {
   const card = document.createElement("div");
   card.className = "card";
@@ -147,7 +147,7 @@ function createPropertyCard(p) {
   card.innerHTML = `
     <div class="title">${titleText}</div>
     <div class="meta">${metaText}</div>
-    <p>${descText}</p>
+    <div class="description">${descText}</div>
 
     <div class="card-actions">
       <a class="btn" href="#">View details</a>
