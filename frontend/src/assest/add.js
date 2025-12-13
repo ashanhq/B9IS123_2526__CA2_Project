@@ -7,6 +7,7 @@ document.querySelector("#addForm").addEventListener("submit", async (e) => {
     location: document.querySelector("#location").value,
     beds: Number(document.querySelector("#beds").value),
     baths: Number(document.querySelector("#baths").value),
+    description: document.getElementById("description").value
     //image: document.querySelector("#image").value 
   };
 
