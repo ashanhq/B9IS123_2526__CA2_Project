@@ -5,6 +5,9 @@ A full-stack web application built for the Programming for Information Systems (
 Github Link
 https://github.com/ashanhq/B9IS123_2526__CA2_Project
 
+Project Deployment Link
+https://realestate-ownreailly.netlify.app/
+
 
  Features
 
@@ -101,6 +104,7 @@ MongoDB Atlas (Cloud DB)
 └── README.md
 
 
+
 Core Functionalities
  CRUD Operations for Properties
 The system allows users to create, read, update, and delete property listings:
@@ -158,31 +162,26 @@ node server.js
 4. Open Frontend
 Open index.html in your browser.
 
- API Endpoints (REST)
-Method
-Endpoint
-Description
-GET
-/api/properties
-Get all properties
-GET
-/api/properties/:id
-Get one property
-POST
-/api/properties
-Add new property
-PUT
-/api/properties/:id
-Update property
-DELETE
-/api/properties/:id
-Delete property
+
+API Endpoints (REST)
+
+| Method | Endpoint            | Description           |
+| ------ | ------------------- | --------------------- |
+| GET    | /api/properties     | Get all properties    |
+| GET    | /api/properties/:id | Get a single property |
+| POST   | /api/properties     | Add new property      |
+| PUT    | /api/properties/:id | Update property       |
+| DELETE | /api/properties/:id | Delete property       |
 
 
 📝 Acknowledgement
+
+
 This project was developed as part of the Programming for Information Systems (B9IS123) module.
  Some parts of the implementation were supported using Online resources You tube Stack overflow and ChatGPT for explanations and guidance.
  Contact
+
+ 
 If you have questions or want help improving the project:
 Developer: R M Ashan Maduwantha
 Email: ashanmaduwantha270@gmail.com
