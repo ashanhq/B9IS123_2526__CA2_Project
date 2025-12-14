@@ -17,18 +17,25 @@
     </div>
   </header>
 
-  <section id="search" aria-label="search">   
-  <form id="searchForm" class="search-form">
-    <input type="text" id="q" name="q" placeholder="Search by city, keyword..." />
-    <select id="bedrooms" name="bedrooms">
-      <option value="">Any beds</option>
-      <option value="1">1+</option>
-      <option value="2">2+</option>
-      <option value="3">3+</option>
-    </select>
-    <button type="submit" class="btn">Search</button>
-  </form>
-</section>
+ <form id="searchForm" class="search-form">
+  <input type="text" id="q" name="q" placeholder="Search by city, keyword..." />
+
+  <select id="type" name="type">
+    <option value="">Any Type</option>
+    <option value="For Sale">For Sale</option>
+    <option value="For Rent">For Rent</option>
+  </select>
+
+  <select id="bedrooms" name="bedrooms">
+    <option value="">Any beds</option>
+    <option value="1">1+</option>
+    <option value="2">2+</option>
+    <option value="3">3+</option>
+  </select>
+
+  <button type="submit" class="btn">Search</button>
+</form>
+
 
   <main class="container">
     <section id="hero">
