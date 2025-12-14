@@ -5,6 +5,9 @@ A full-stack web application built for the Programming for Information Systems (
 Github Link
 https://github.com/ashanhq/B9IS123_2526__CA2_Project
 
+Project Deployment Link
+https://realestate-ownreailly.netlify.app/
+
 
  Features
 
