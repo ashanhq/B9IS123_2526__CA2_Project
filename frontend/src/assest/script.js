@@ -4,7 +4,7 @@ const API_URL = "https://realestate-backend-93d3.onrender.com/api/properties";
 let currentEditId = null;
 
 // Open Modal
-const addListingBtn = document.querySelector(".add-listing-btn");
+const addListingBtn = document.querySelector(".add-listing-btn");  /*UI modal logic was originally drafted with ChatGPT guidance and then customized by myself*/
 const addListingModal = document.getElementById("addListingModal");
 // Close Buttons
 const closeModalBtn = document.getElementById("closeModalBtn");
@@ -48,7 +48,7 @@ const editLocation = document.getElementById("editLocation");
 const editPrice = document.getElementById("editPrice");
 const editBeds = document.getElementById("editBeds");
 const editBaths = document.getElementById("editBaths");
-const editDesc = document.getElementById("editDesc");
+const editDesc = document.getElementById("editDesc");       /*Edit modal population and form handling done using my own logic with small reference help from online tutorials*/
 
 // OPEN EDIT FORM
 document.addEventListener("click", function (e) {
@@ -109,7 +109,7 @@ if (editForm) {
       location: editLocation.value,
       price: Number(editPrice.value),
       beds: Number(editBeds.value),
-      baths: Number(editBaths.value),
+      baths: Number(editBaths.value), /* Reference from chatgpt for debugging errors and for guidance*/
       description: editDesc.value
     };
 

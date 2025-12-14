@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const PropertySchema = new mongoose.Schema({
+const PropertySchema = new mongoose.Schema({ //Reference : YouTube Tutorials 
   price: Number,
   type: String,
-  location: String,
+  location: String, 
   beds: Number,
   baths: Number,
    image: {   

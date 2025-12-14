@@ -1,6 +1,6 @@
  const Property = require("../models/Property");
 
-exports.getAll = async (req, res) => {
+exports.getAll = async (req, res) => {             //Reference : StackOverflow (Used for debugging error messages)
   const data = await Property.find();
   res.json(data);
 };
