@@ -231,6 +231,26 @@ document.getElementById("searchForm").addEventListener("submit", async function 
     });
 
 
+  //Render Filtered Property Cards
+    const container = document.getElementById("listings");
+    container.innerHTML = "";
+
+    if (!filtered.length) {
+      container.innerHTML = "<p>No properties match your search.</p>";
+      return;
+    }
+
+    filtered.forEach(p => {
+      const card = createPropertyCard(p);
+      container.appendChild(card);
+    });
+
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+
 // initialload
 document.addEventListener("DOMContentLoaded", loadProperties);
 
