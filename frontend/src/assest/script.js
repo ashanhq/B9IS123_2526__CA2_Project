@@ -221,6 +221,16 @@ document.getElementById("searchForm").addEventListener("submit", async function 
     const res = await fetch(API_URL);
     const properties = await res.json();
 
+  //Filter Property Results
+    let filtered = properties.filter(p => {
+      const matchesLocation = p.location.toLowerCase().includes(q);
+      const matchesType = type ? p.type === type : true;
+      const matchesBeds = beds ? p.beds >= Number(beds) : true;
+
+      return matchesLocation && matchesType && matchesBeds;
+    });
+
+
 // initialload
 document.addEventListener("DOMContentLoaded", loadProperties);
 
