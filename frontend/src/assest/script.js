@@ -153,7 +153,6 @@ function createPropertyCard(p) {
 
     <div class="card-actions">
        <a class="btn" href="property.html?id=${p._id}">View details</a>
-
       ${!isIndexPage 
         ? `<button class="btn edit-btn" data-id="${p._id}">Edit</button>
            <button class="btn delete-btn" data-id="${p._id}">Delete</button>`
