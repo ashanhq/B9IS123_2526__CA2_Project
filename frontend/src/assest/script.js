@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:5000/api/properties";
+//const API_URL = "http://localhost:5000/api/properties";
+const API_URL = "https://realestate-backend-93d3.onrender.com/api/properties";
+
 let currentEditId = null;
 
 // Open Modal
