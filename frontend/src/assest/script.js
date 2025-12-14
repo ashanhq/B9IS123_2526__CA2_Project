@@ -144,6 +144,8 @@ function createPropertyCard(p) {
   const metaText = `${p.location || ""} • €${p.price ?? ""} • ${p.beds ?? 0} bed • ${p.baths ?? 0} bath`;
   const descText = p.description || "No description provided.";
 
+   const isIndexPage = window.location.pathname.includes("index.html") || window.location.pathname === "/"; 
+
   card.innerHTML = `
     <div class="title">${titleText}</div>
     <div class="meta">${metaText}</div>
