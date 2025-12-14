@@ -209,6 +209,18 @@ document.addEventListener("click", (e) => {
   }
 });
 
+//Search Form Submit
+document.getElementById("searchForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const q = document.getElementById("q").value.trim().toLowerCase();
+  const type = document.getElementById("type").value;
+  const beds = document.getElementById("bedrooms").value;
+
+  try {
+    const res = await fetch(API_URL);
+    const properties = await res.json();
+
 // initialload
 document.addEventListener("DOMContentLoaded", loadProperties);
 
