@@ -6,7 +6,10 @@ const PropertySchema = new mongoose.Schema({
   location: String,
   beds: Number,
   baths: Number,
-  image: String,
+   image: {   
+  type: String,
+  default: "https://via.placeholder.com/600x400?text=No+Image"
+},
   description: String
 });
 
