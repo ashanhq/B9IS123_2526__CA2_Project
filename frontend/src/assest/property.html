@@ -17,6 +17,33 @@
       </nav>
     </div>
   </header>
+ <main class="container">  
+    <section id="details-section">
+
+      <img id="propertyImage" class="property-img" src="" alt="Property Image">
+
+      <h2 id="title">Loading...</h2>
+      <p id="meta"></p>
+      <p id="description"></p>
+
+      <h3>Location</h3>
+      <iframe id="map"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+
+      <div class="contact-box">
+        <h3>Contact Agent</h3>
+        <p><strong>Name:</strong> Ashan </p>
+        <p><strong>Email:</strong> ashan@realestate.com</p>
+        <p><strong>Phone:</strong> +353 85 123 4567</p>
+        <button class="btn">Send Message</button>
+      </div>
+
+      <button onclick="history.back()" class="btn">  Back</button>
+    </section>
+  </main> 
 
  <script src="view.js" defer></script>
 </body>
